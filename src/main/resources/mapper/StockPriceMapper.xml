@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.StockPriceMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.bean.StockPrice">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="time" column="time" jdbcType="TIMESTAMP"/>
+            <result property="open" column="open" jdbcType="DECIMAL"/>
+            <result property="high" column="high" jdbcType="DECIMAL"/>
+            <result property="low" column="low" jdbcType="DECIMAL"/>
+            <result property="close" column="close" jdbcType="DECIMAL"/>
+            <result property="volume" column="volume" jdbcType="DECIMAL"/>
+            <result property="amount" column="amount" jdbcType="DECIMAL"/>
+            <result property="angle1" column="angle1" jdbcType="DECIMAL"/>
+            <result property="data3" column="data3" jdbcType="DECIMAL"/>
+            <result property="angle3" column="angle3" jdbcType="DECIMAL"/>
+            <result property="data5" column="data5" jdbcType="DECIMAL"/>
+            <result property="angle5" column="angle5" jdbcType="DECIMAL"/>
+            <result property="data7" column="data7" jdbcType="DECIMAL"/>
+            <result property="angle7" column="angle7" jdbcType="DECIMAL"/>
+            <result property="data10" column="data10" jdbcType="DECIMAL"/>
+            <result property="angle10" column="angle10" jdbcType="DECIMAL"/>
+            <result property="data14" column="data14" jdbcType="DECIMAL"/>
+            <result property="angle14" column="angle14" jdbcType="DECIMAL"/>
+            <result property="data20" column="data20" jdbcType="DECIMAL"/>
+            <result property="angle20" column="angle20" jdbcType="DECIMAL"/>
+            <result property="data21" column="data21" jdbcType="DECIMAL"/>
+            <result property="angle21" column="angle21" jdbcType="DECIMAL"/>
+            <result property="avg1210" column="avg_1210" jdbcType="DECIMAL"/>
+            <result property="avg2420" column="avg_2420" jdbcType="DECIMAL"/>
+            <result property="avg4840" column="avg_4840" jdbcType="DECIMAL"/>
+            <result property="stockIdId" column="stock_id_id" jdbcType="VARCHAR"/>
+            <result property="data1" column="data1" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,time,open,
+        high,low,close,
+        volume,amount,angle1,
+        data3,angle3,data5,
+        angle5,data7,angle7,
+        data10,angle10,data14,
+        angle14,data20,angle20,
+        data21,angle21,avg_1210,
+        avg_2420,avg_4840,stock_id_id,
+        data1
+    </sql>
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.StockMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.bean.Stock">
+            <id property="stockId" column="stock_id" jdbcType="VARCHAR"/>
+            <result property="beginTime" column="begin_time" jdbcType="TIMESTAMP"/>
+            <result property="lastTime" column="last_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        stock_id,begin_time,last_time
+    </sql>
+
+
+    <!--  ********************************插入**********************************************-->
+    <!--  这个是 Oracal//可以使用序列 ，并且可以获取到该属性-->
+    <!--  <insert id="addStock" >-->
+    <!--    <selectKey keyProperty="id" order="BEFORE" resultType="Integer">-->
+    <!--      select STOCK_SEQ.nextval  from dual-->
+    <!--    </selectKey>-->
+    <!--    insert into  stock_stocklist(`stock_id`,`begin_time`,`last_time`) value (#{stockId},#{beginTime},#{lastTime})-->
+    <!--  </insert>-->
+
+    <!--  这个是mysql//useGeneratedKeys="true" keyProperty="id" id不用赋值，可以使用自增的主键，并且可以获取到该属性-->
+    <insert id="addStock" >
+        insert into  stock_stocklist(`stock_id`,`begin_time`,`last_time`) value (#{stockId},#{beginTime},#{lastTime})
+    </insert>
+
+    <!--  ********************************查询**********************************************-->
+    <!--  单个参数不用在意参数名字 -->
+    <!--  多个参数使用 在mapper接口 的方法 里面使用@param("id") Integer id的参数-->
+    <!--  自定义返回的映射规则resultMap（map<key:value>）-->
+    <!--  返回值可以是单个属性和value； 可以是一个自定义map； 可以是一个对象； 可以是一个对象加一些其它的参数； 对象List；  对象对应的map;   -->
+    <select id="searchStock" resultType="com.example.demo.bean.Stock">
+        select * from stock_stocklist where stock_id = #{stockId}
+    </select>
+
+</mapper>
