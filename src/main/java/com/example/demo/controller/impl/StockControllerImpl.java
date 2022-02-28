@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -81,6 +82,19 @@ public class StockControllerImpl implements StockController {
             map.put("msg","inert error!");
         }
         return map;
+    }
+
+    /**
+     * 查询多只股票的信息
+     *
+     * @param stockId 股票信息
+     * @return List<Map < String, String>>
+     * @throws ParseException 参数错误
+     */
+    @GetMapping ("/stock/search_stocks/{stockId}")
+    @Override
+    public List<Stock> searchByCode(String stockId) throws ParseException {
+        return stockService.searchByCode(stockId);
     }
 
 }

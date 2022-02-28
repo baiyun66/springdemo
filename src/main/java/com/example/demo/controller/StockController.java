@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,5 +47,14 @@ public interface StockController {
      * @throws ParseException 参数错误
      */
     Map<String,String>  addStock(@RequestBody Map<String,Object> stockString) throws ParseException;
+
+
+    /**
+     * 查询多只股票的信息
+     * @param stockId 股票信息
+     * @return List<Map<String,String>>
+     * @throws ParseException 参数错误
+     */
+    List<Stock>  searchByCode(String stockId) throws ParseException;
 
 }

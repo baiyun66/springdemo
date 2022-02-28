@@ -7,6 +7,8 @@ import com.example.demo.mapper.StockMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
 * @author 24629
 * @description 针对表【stock_stocklist】的数据库操作Service实现
@@ -35,6 +37,15 @@ public class StockServiceImpl extends ServiceImpl<StockMapper, Stock>
     @Override
     public void addStock(Stock stock) {
         stockMapper.addStock(stock);
+    }
+
+    /**
+     * @param stockId
+     * @return
+     */
+    @Override
+    public List<Stock> searchByCode(String stockId) {
+        return stockMapper.searchByCode(stockId);
     }
 }
 

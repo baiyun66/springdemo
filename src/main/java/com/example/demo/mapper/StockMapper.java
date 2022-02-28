@@ -4,6 +4,10 @@ import com.example.demo.bean.Stock;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.text.ParseException;
+import java.util.List;
+import java.util.Map;
+
 /**
 * @author 24629
 * @description 针对表【stock_stocklist】的数据库操作Mapper
@@ -34,6 +38,13 @@ public interface StockMapper extends BaseMapper<Stock> {
      * @param stock 插入的值
      */
     public void addStock(Stock stock);
+
+    /**
+     * 查询多只股票的信息
+     * @param stockId 股票信息
+     * @return List<Map<String,String>>
+     */
+    public List<Stock> searchByCode(String stockId);
 
 }
 
