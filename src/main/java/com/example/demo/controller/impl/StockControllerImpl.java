@@ -3,6 +3,7 @@ package com.example.demo.controller.impl;
 import com.example.demo.bean.Stock;
 import com.example.demo.controller.StockController;
 import com.example.demo.service.impl.StockServiceImpl;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -93,7 +94,10 @@ public class StockControllerImpl implements StockController {
      */
     @GetMapping ("/stock/search_stocks/{stockId}")
     @Override
-    public List<Stock> searchByCode(String stockId) throws ParseException {
+    public List<Stock> searchByCode(@PathVariable("stockId") String stockId) throws ParseException {
+        System.out.println(stockId);
+        stockId+="_";
+        System.out.println(stockId);
         return stockService.searchByCode(stockId);
     }
 

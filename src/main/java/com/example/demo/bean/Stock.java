@@ -5,7 +5,10 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -31,6 +34,20 @@ public class Stock implements Serializable {
      * 
      */
     private Date lastTime;
+
+    /**
+     *
+     */
+    @TableField(exist = false)
+    private List<StockPrice> prices;
+
+    public List<StockPrice> getPrices() {
+        return prices;
+    }
+
+    public void setPrices(List<StockPrice> prices) {
+        this.prices = prices;
+    }
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

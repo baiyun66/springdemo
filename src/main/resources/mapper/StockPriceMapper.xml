@@ -47,4 +47,15 @@
         avg_2420,avg_4840,stock_id_id,
         data1
     </sql>
+
+
+<!--    <resultMap id="stockPrice" type="com.example.demo.bean.StockPrice">-->
+
+<!--    </resultMap>-->
+
+    <select id="searchStockPriceByCode" resultType="com.example.demo.bean.StockPrice">
+        select * from stock_stockdaydataadd where stock_id_id = #{stockId}
+    </select>
+
+
 </mapper>

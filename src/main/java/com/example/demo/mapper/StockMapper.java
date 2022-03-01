@@ -3,6 +3,7 @@ package com.example.demo.mapper;
 import com.example.demo.bean.Stock;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.text.ParseException;
 import java.util.List;

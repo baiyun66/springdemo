@@ -34,13 +34,50 @@
     <!--  多个参数使用 在mapper接口 的方法 里面使用@param("id") Integer id的参数-->
     <!--  自定义返回的映射规则resultMap（map<key:value>）-->
     <!--  返回值可以是单个属性和value； 可以是一个自定义map； 可以是一个对象； 可以是一个对象加一些其它的参数； 对象List；  对象对应的map;   -->
-    <select id="searchStock" resultType="com.example.demo.bean.Stock">
-        select * from stock_stocklist where stock_id = #{stockId}
-    </select>
 
 
     <select id="searchByCode" resultType="com.example.demo.bean.Stock">
-        select * from stock_stocklist where stock_id like "${stockId}%"
+        select * from stock_stocklist where stock_id LIKE #{stockId}
+    </select>
+
+    <resultMap id="StockAndPrice" type="com.example.demo.bean.Stock">
+        <id property="stockId" column="stock_id" jdbcType="VARCHAR"/>
+        <result property="beginTime" column="begin_time" jdbcType="TIMESTAMP"/>
+        <result property="lastTime" column="last_time" jdbcType="TIMESTAMP"/>
+        <collection property="prices"  ofType="com.example.demo.bean.StockPrice" column="id">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="time" column="time" jdbcType="TIMESTAMP"/>
+            <result property="open" column="open" jdbcType="DECIMAL"/>
+            <result property="high" column="high" jdbcType="DECIMAL"/>
+            <result property="low" column="low" jdbcType="DECIMAL"/>
+            <result property="close" column="close" jdbcType="DECIMAL"/>
+            <result property="volume" column="volume" jdbcType="DECIMAL"/>
+            <result property="amount" column="amount" jdbcType="DECIMAL"/>
+            <result property="angle1" column="angle1" jdbcType="DECIMAL"/>
+            <result property="data3" column="data3" jdbcType="DECIMAL"/>
+            <result property="angle3" column="angle3" jdbcType="DECIMAL"/>
+            <result property="data5" column="data5" jdbcType="DECIMAL"/>
+            <result property="angle5" column="angle5" jdbcType="DECIMAL"/>
+            <result property="data7" column="data7" jdbcType="DECIMAL"/>
+            <result property="angle7" column="angle7" jdbcType="DECIMAL"/>
+            <result property="data10" column="data10" jdbcType="DECIMAL"/>
+            <result property="angle10" column="angle10" jdbcType="DECIMAL"/>
+            <result property="data14" column="data14" jdbcType="DECIMAL"/>
+            <result property="angle14" column="angle14" jdbcType="DECIMAL"/>
+            <result property="data20" column="data20" jdbcType="DECIMAL"/>
+            <result property="angle20" column="angle20" jdbcType="DECIMAL"/>
+            <result property="data21" column="data21" jdbcType="DECIMAL"/>
+            <result property="angle21" column="angle21" jdbcType="DECIMAL"/>
+            <result property="avg1210" column="avg_1210" jdbcType="DECIMAL"/>
+            <result property="avg2420" column="avg_2420" jdbcType="DECIMAL"/>
+            <result property="avg4840" column="avg_4840" jdbcType="DECIMAL"/>
+            <result property="stockIdId" column="stock_id_id" jdbcType="VARCHAR"/>
+            <result property="data1" column="data1" jdbcType="DECIMAL"/>
+        </collection>
+    </resultMap>
+
+    <select id="searchStock" resultMap="StockAndPrice">
+        select s.*,p.* from stock_stocklist s ,stock_stockdaydataadd p where s.stock_id = #{stockId} and p.stock_id_id =  #{stockId}
     </select>
 
 </mapper>
