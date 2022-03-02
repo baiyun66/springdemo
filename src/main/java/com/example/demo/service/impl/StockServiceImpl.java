@@ -47,6 +47,15 @@ public class StockServiceImpl extends ServiceImpl<StockMapper, Stock>
     public List<Stock> searchByCode(String stockId) {
         return stockMapper.searchByCode(stockId);
     }
+
+    /**
+     * @param StockId
+     * @return
+     */
+    @Override
+    public List<Float> searchAuthorStockCloseById(String StockId) {
+        return stockMapper.searchAuthorStockCloseById(StockId);
+    }
 }
 
 

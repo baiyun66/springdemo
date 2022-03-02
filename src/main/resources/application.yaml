@@ -32,7 +32,10 @@ spring:
             drop-table-allow: false
 
 # 配置mybatis规则
-#mybatis:
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 ##  config-location: classpath:mybatis/mybaits-config.xml  #全局配置文件位置
 #  mapper-locations: classpath:mybatis/mapper/*.xml  #sql映射文件位置
 #
@@ -40,3 +43,4 @@ spring:
 #    map-underscore-to-camel-case: true
 
 debug: true
+

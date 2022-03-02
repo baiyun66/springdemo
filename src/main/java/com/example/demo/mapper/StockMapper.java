@@ -47,6 +47,12 @@ public interface StockMapper extends BaseMapper<Stock> {
      */
     public List<Stock> searchByCode(String stockId);
 
+    /**
+     *
+     * @param stockId
+     * @return
+     */
+    List<Float> searchAuthorStockCloseById(String stockId);
 }
 
 

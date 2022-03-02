@@ -8,6 +8,10 @@
             <id property="stockId" column="stock_id" jdbcType="VARCHAR"/>
             <result property="beginTime" column="begin_time" jdbcType="TIMESTAMP"/>
             <result property="lastTime" column="last_time" jdbcType="TIMESTAMP"/>
+        <collection property="prices" ofType="com.example.demo.bean.StockPrice">
+            
+        </collection>
+
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -78,6 +82,11 @@
 
     <select id="searchStock" resultMap="StockAndPrice">
         select s.*,p.* from stock_stocklist s ,stock_stockdaydataadd p where s.stock_id = #{stockId} and p.stock_id_id =  #{stockId}
+    </select>
+
+
+    <select id="searchAuthorStockCloseById" resultType="java.lang.Float">
+        select `close` from stock_stockdaydataadd where stock_id_id = #{stockId}
     </select>
 
 </mapper>

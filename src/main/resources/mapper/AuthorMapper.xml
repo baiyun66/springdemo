@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.AuthorMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.bean.Author">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="age" column="age" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,age
+    </sql>
+
+    <select id="searchAuthorStockById" resultType="com.example.demo.bean.Stock">
+        select * from stock_stocklist where stock_id IN
+        (select stock_id from stock_author  where autor_id = #{autorId})
+    </select>
+
+
+
+    <resultMap id="Author_ALL_Info" type="com.example.demo.bean.AuthorInfo">
+        <id column="id" property="id"></id>
+        <result property="age" column="age"></result>
+        <result property="name" column="name"></result>
+
+        <association property="house" javaType="com.example.demo.bean.House">
+            <result property="city" column="city"></result>
+        </association>
+
+        <collection property="stocks" ofType="com.example.demo.bean.Stock">
+            <id property="stockId" column="stock_id"></id>
+            <result property="beginTime" column="begin_time"></result>
+            <result property="lastTime" column="last_time"></result>
+        </collection>
+
+    </resultMap>
+
+    <select id="searchAuthorInfo" resultMap="Author_ALL_Info">
+      select a.id,a.name,a.age,h.city,s.* from author a, house h,stock_stocklist s where a.id = #{authorId}  and a.id = h.author_id and s.stock_id in (select stock_id from stock_author  where autor_id = #{autorId})
+    </select>
+
+
+    <resultMap id="Author_Income" type="com.example.demo.bean.AuthorInfo">
+        <result column="id" property="id"></result>
+        <result column="name" property="name"></result>
+
+    </resultMap>
+
+<!--    <collection property="stocks" ofType="com.example.demo.bean.Stock">-->
+<!--        <id property="stockId" column="{stock_id = id}"></id>-->
+<!--        &lt;!&ndash;            <collection property= "prices"  column="{stock_id_id = stock_id}" ofType="com.example.demo.bean.StockPrice">&ndash;&gt;-->
+<!--        &lt;!&ndash;                <result property="time" column="time"></result>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <result property="close" column="close"></result>&ndash;&gt;-->
+<!--        &lt;!&ndash;            </collection>&ndash;&gt;-->
+<!--    </collection>-->
+
+
+    <select id="searchAuthorIncome" resultMap="Author_Income">
+        select a.id,a.name,s.stock_id ,p.close,p.time
+        from author a, stock_stocklist s , stock_stockdaydataadd p
+        where a.id = #{authorId} and s.stock_id = p.stock_id_id and left(p.time,10) in ("2019-01-02","2019-12-31")
+        and s.stock_id in (select stock_id from stock_author  where autor_id = #{autorId})
+    </select>
+
+
+
+
+
+
+
+    <resultMap id="Author_House" type="com.example.demo.bean.AuthorInfo">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+       <collection property="house" column="{authorId=id}" select="com.example.demo.mapper.AuthorMapper.selectHouse"/>
+    </resultMap>
+    <select id="selectHouse" resultType="com.example.demo.bean.House">
+        SELECT * FROM house WHERE author_id = #{authorId}
+    </select>
+    <select id="searchAuthorHouse" resultMap="Author_House">
+        SELECT * FROM author WHERE author.ID = #{authorId}
+    </select>
+
+
+
+</mapper>

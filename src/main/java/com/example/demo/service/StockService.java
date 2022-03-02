@@ -34,4 +34,14 @@ public interface StockService extends IService<Stock> {
      * @return
      */
     List<Stock> searchByCode(String stockId);
+
+
+    /**
+     *
+     * @param StockId
+     * @return
+     */
+    List<Float> searchAuthorStockCloseById(String StockId);
+
+
 }
