@@ -50,7 +50,7 @@ public interface AuthorService extends IService<Author> {
      * @param authorId
      * @return
      */
-    AuthorInfo searchAuthorIncome(int authorId);
+    Map<String,Object> searchAuthorIncome(int authorId);
 
     /**
      *

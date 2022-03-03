@@ -100,8 +100,8 @@ public class SelectControllerImpl{
      * @param authorId
      * @return
      */
-    
-    public AuthorInfo searchAuthorIncome(int authorId) {
+    @GetMapping("/author/{author_id}/income")
+    public Map<String,Object> searchAuthorIncome(@PathVariable("author_id") int authorId) {
         return authorService.searchAuthorIncome(authorId);
     }
 

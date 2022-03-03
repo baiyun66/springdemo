@@ -18,4 +18,12 @@ public interface StockPriceService extends IService<StockPrice> {
      */
     public List<StockPrice> searchStockPriceByCode(String stockId);
 
+
+    /**
+     *
+     * @param stockId
+     * @return
+     */
+    public List<StockPrice> searchStockPriceByCodeAndTime(String stockId, List<String> dates);
+
 }

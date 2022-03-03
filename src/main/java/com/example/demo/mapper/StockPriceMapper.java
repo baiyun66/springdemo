@@ -3,7 +3,9 @@ package com.example.demo.mapper;
 import com.example.demo.bean.StockPrice;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,6 +24,13 @@ public interface StockPriceMapper extends BaseMapper<StockPrice> {
      * @return
      */
     public List<StockPrice> searchStockPriceByCode(String stockId);
+
+    /**
+     *
+     * @param stockId
+     * @return
+     */
+    public List<StockPrice> searchStockPriceByCodeAndTime(@Param("stockId") String stockId,@Param("dates") List<String> dates);
 
 }
 

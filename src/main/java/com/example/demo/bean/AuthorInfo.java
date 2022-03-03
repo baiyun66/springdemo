@@ -17,7 +17,6 @@ public class AuthorInfo extends Author{
     private House house;
     private List<Stock> stocks;
 
-
     public House getHouse() {
         return house;
     }

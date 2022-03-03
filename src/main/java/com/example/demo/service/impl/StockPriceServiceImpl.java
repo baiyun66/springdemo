@@ -29,6 +29,17 @@ public class StockPriceServiceImpl extends ServiceImpl<StockPriceMapper, StockPr
     public List<StockPrice> searchStockPriceByCode(String stockId) {
         return stockPriceMapper.searchStockPriceByCode(stockId);
     }
+
+
+    /**
+     *
+     * @param stockId
+     * @return
+     */
+    @Override
+    public List<StockPrice> searchStockPriceByCodeAndTime(String stockId, List<String> dates){
+        return stockPriceMapper.searchStockPriceByCodeAndTime(stockId,dates);
+    }
 }
 
 

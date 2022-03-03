@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.bean.StockPrice;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,4 +20,6 @@ public interface StockPriceController {
      * @return
      */
     public List<StockPrice> searchStockPriceByCode(String stockId);
+
+
 }

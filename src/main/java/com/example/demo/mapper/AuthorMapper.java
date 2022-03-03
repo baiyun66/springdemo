@@ -41,6 +41,8 @@ public interface AuthorMapper extends BaseMapper<Author> {
      */
     AuthorInfo searchAuthorIncome(int authorId);
 
+    AuthorInfo searchAuthorIncomeTest(int authorId);
+
     AuthorInfo searchAuthorHouse(int authorId);
 
 //    /**

@@ -56,6 +56,12 @@
     <select id="searchStockPriceByCode" resultType="com.example.demo.bean.StockPrice">
         select * from stock_stockdaydataadd where stock_id_id = #{stockId}
     </select>
+    <select id="searchStockPriceByCodeAndTime" resultType="com.example.demo.bean.StockPrice">
+        select * from stock_stockdaydataadd where stock_id_id = #{stockId} and left(time,10) in
+        <foreach collection="dates" item="date" index="index" open="(" close=")" separator=",">
+            #{date}
+        </foreach>
+    </select>
 
 
 </mapper>
