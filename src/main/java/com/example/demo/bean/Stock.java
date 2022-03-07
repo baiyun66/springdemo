@@ -38,7 +38,6 @@ public class Stock implements Serializable {
     /**
      *
      */
-    @TableField(exist = false)
     private List<StockPrice> prices;
 
     public List<StockPrice> getPrices() {

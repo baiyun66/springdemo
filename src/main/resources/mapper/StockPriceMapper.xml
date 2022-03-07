@@ -49,7 +49,25 @@
     </sql>
 
 
-<!--    <resultMap id="stockPrice" type="com.example.demo.bean.StockPrice">-->
+    <insert id="addRandomStockPriceByCode">
+        insert into `stock_stockdaydataadd` (time,open,
+        high,low,close,volume,amount,angle1,data3,angle3,data5,angle5,data7,angle7,
+        data10,angle10,data14,angle14,data20,angle20,data21,angle21,avg_1210,
+        avg_2420,avg_4840,stock_id_id,data1)
+        VALUES
+        <foreach collection="list" item="stockPrice" separator=",">
+            (#{stockPrice.time},#{stockPrice.open},#{stockPrice.high},#{stockPrice.low},#{stockPrice.close},
+               #{stockPrice.volume},#{stockPrice.amount},
+               #{stockPrice.angle1},#{stockPrice.data3},#{stockPrice.angle3},#{stockPrice.data5},
+               #{stockPrice.angle5},#{stockPrice.data7},#{stockPrice.angle7},#{stockPrice.data10},
+               #{stockPrice.angle10},#{stockPrice.data14},#{stockPrice.angle14},#{stockPrice.data20},
+               #{stockPrice.angle20},#{stockPrice.data21},#{stockPrice.angle21},#{stockPrice.avg1210},
+               #{stockPrice.avg2420},#{stockPrice.avg4840},#{stockPrice.stockIdId},#{stockPrice.data1})
+        </foreach>
+    </insert>
+
+
+    <!--    <resultMap id="stockPrice" type="com.example.demo.bean.StockPrice">-->
 
 <!--    </resultMap>-->
 

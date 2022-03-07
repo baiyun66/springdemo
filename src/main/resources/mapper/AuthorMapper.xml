@@ -14,11 +14,11 @@
         id,name,age
     </sql>
 
+
     <select id="searchAuthorStockById" resultType="com.example.demo.bean.Stock">
         select * from stock_stocklist where stock_id IN
         (select stock_id from stock_author  where autor_id = #{autorId})
     </select>
-
 
 
     <resultMap id="Author_ALL_Info" type="com.example.demo.bean.AuthorInfo">
@@ -64,9 +64,6 @@
 
 
 
-
-
-
     <resultMap id="Author_House" type="com.example.demo.bean.AuthorInfo">
         <id property="id" column="id"></id>
         <result property="name" column="name"></result>
@@ -82,38 +79,42 @@
 
 
     <resultMap id="Author_Income_test" type="com.example.demo.bean.AuthorInfo">
-        <result column="author_id" property="id"></result>
-        <result column="name" property="name"></result>
-
+        <result column="author_id" property="id"/>
+        <result column="name" property="name"/>
         <collection property="stocks"  ofType="com.example.demo.bean.Stock">
-            <id property="stockId" column="stock_id"></id>
-<!--            <collection property="prices" column="{stock_id_id = stock_id}" select=""/>-->
-            <collection property="prices" ofType="com.example.demo.bean.StockPrice">
-                <id property="stockIdId" column="stock_id_id"></id>
-                <result column="price_close" property="close"></result>
-                <result column="price_time" property="time"></result>
-            </collection>
+            <id property="stockId" column="stock_id"/>
+            <result column="last_time" property="lastTime"/>
+            <collection property="prices" column="{stock_id_id = stock_id}" select="searchPrices"/>
         </collection>
     </resultMap>
 
+    <resultMap id="Prices" type="com.example.demo.bean.StockPrice">
+        <id column="stock_id_id" property="stockIdId" />
+        <result column="price_close" property="close"/>
+        <result column="price_time" property="time"/>
+    </resultMap>
+
+
+
+    <select id="searchPrices" resultMap="Prices">
+        select
+            sd.stock_id_id as stock_id_id,
+            sd.close as price_close,
+            sd.time as price_time
+        from  stock_stockdaydataadd sd where sd.stock_id_id = #{stock_id_id}
+    </select>
 
     <select id="searchAuthorIncomeTest" resultMap="Author_Income_test">
         select
                a.id as author_id,
                a.name as name,
-
                s.stock_id as stock_id,
                s.last_time as last_time,
-               s.begin_time as begin_time,
+               s.begin_time as begin_time
 
-               sd.stock_id_id as stock_id_id,
-               sd.close as price_close,
-               sd.time as price_time
         from author a left outer join stock_author sa on a.id = sa.autor_id
                      left outer join stock_stocklist s on sa.stock_id = s.stock_id
-                     left outer join stock_stockdaydataadd sd on sd.stock_id_id = s.stock_id
         where a.id = #{authorId}
     </select>
-
 
 </mapper>

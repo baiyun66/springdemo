@@ -2,6 +2,7 @@ package com.example.demo.mapper;
 
 import com.example.demo.bean.Stock;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -53,6 +54,14 @@ public interface StockMapper extends BaseMapper<Stock> {
      * @return
      */
     List<Float> searchAuthorStockCloseById(String stockId);
+
+    /**
+     * 返回stock的id为key的maps
+     * @param stockId
+     * @return
+     */
+    @MapKey("stock_id")
+    public Map<String,Stock> getStockMaps(String stockId);
 }
 
 

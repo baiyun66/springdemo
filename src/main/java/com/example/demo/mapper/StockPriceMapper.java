@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
 * @author 24629
@@ -32,6 +33,11 @@ public interface StockPriceMapper extends BaseMapper<StockPrice> {
      */
     public List<StockPrice> searchStockPriceByCodeAndTime(@Param("stockId") String stockId,@Param("dates") List<String> dates);
 
+    /**
+     *
+     * @param stockPrices
+     */
+    void addRandomStockPriceByCode(List<StockPrice> stockPrices);
 }
 
 

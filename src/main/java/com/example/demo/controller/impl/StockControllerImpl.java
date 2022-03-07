@@ -1,9 +1,7 @@
 package com.example.demo.controller.impl;
 
 import com.example.demo.bean.Stock;
-import com.example.demo.controller.StockController;
 import com.example.demo.service.impl.StockServiceImpl;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,26 +19,23 @@ import java.util.Map;
  */
 
 @RestController
-public class StockControllerImpl implements StockController {
+public class StockControllerImpl {
 
     @Autowired
     StockServiceImpl stockService;
 
     @GetMapping("/stock_count")
-    @Override
     public Integer searchAllStock() {
 //        return stockService.searchAllStock();
         return stockService.count();
     }
 
     @GetMapping("/stock/{stock_id}")
-    @Override
     public Stock searchStock(@PathVariable("stock_id")  String stockId) {
         return stockService.searchStock(stockId);
     }
 
     @PostMapping("/stock/add-params")
-    @Override
     public Map<String,String> addStock(@RequestParam("stockId") String stockId,
                                        @RequestParam("beginTime") String beginTime ,
                                        @RequestParam("lastTime") String lastTime) throws ParseException {
@@ -64,7 +59,6 @@ public class StockControllerImpl implements StockController {
 
 
     @PostMapping("/stock/add-Json")
-    @Override
     public Map<String,String>  addStock(@RequestBody Map<String,Object> stockString) throws ParseException {
 
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -93,7 +87,6 @@ public class StockControllerImpl implements StockController {
      * @throws ParseException 参数错误
      */
     @GetMapping ("/stock/search_stocks/{stockId}")
-    @Override
     public List<Stock> searchByCode(@PathVariable("stockId") String stockId) throws ParseException {
         System.out.println(stockId);
         stockId+="_";

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.demo.bean.AuthorInfo;
 import com.example.demo.bean.House;
 import com.example.demo.bean.Stock;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -41,9 +42,10 @@ public interface AuthorMapper extends BaseMapper<Author> {
      */
     AuthorInfo searchAuthorIncome(int authorId);
 
-    AuthorInfo searchAuthorIncomeTest(int authorId);
+    AuthorInfo searchAuthorIncomeTest(@Param("authorId") int authorId);
 
     AuthorInfo searchAuthorHouse(int authorId);
+
 
 //    /**
 //     *

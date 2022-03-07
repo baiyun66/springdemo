@@ -4,6 +4,7 @@ import com.example.demo.bean.StockPrice;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
 * @author 24629
@@ -26,4 +27,10 @@ public interface StockPriceService extends IService<StockPrice> {
      */
     public List<StockPrice> searchStockPriceByCodeAndTime(String stockId, List<String> dates);
 
+    /**
+     *
+     * @param stockId
+     * @return
+     */
+    Map<String, Object> addRandomStockPriceByCode(String stockId);
 }

@@ -9,7 +9,7 @@
             <result property="beginTime" column="begin_time" jdbcType="TIMESTAMP"/>
             <result property="lastTime" column="last_time" jdbcType="TIMESTAMP"/>
         <collection property="prices" ofType="com.example.demo.bean.StockPrice">
-            
+
         </collection>
 
     </resultMap>
@@ -87,6 +87,10 @@
 
     <select id="searchAuthorStockCloseById" resultType="java.lang.Float">
         select `close` from stock_stockdaydataadd where stock_id_id = #{stockId}
+    </select>
+
+    <select id="getStockMaps" resultType="java.util.Map">
+        select * from stock_stockdaydataadd where stock_id_id = #{stockId}
     </select>
 
 </mapper>

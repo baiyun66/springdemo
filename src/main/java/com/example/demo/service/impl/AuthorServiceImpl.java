@@ -86,8 +86,8 @@ public class AuthorServiceImpl extends ServiceImpl<AuthorMapper, Author>
 //
 //        Map<String,List<BigDecimal>> incomeMap = new HashMap<>();
 ////        stringObjectMap.put("stock_list",authorInfo.getStocks());
-//        String beginTime = "2019-01-02";
-//        String endTime ="2019-12-31";
+//        String beginTime = "2019-12-31";
+//        String endTime ="2021-12-31";
 //
 //        List<String> dates = new ArrayList<>();
 //        dates.add(beginTime);
@@ -109,6 +109,7 @@ public class AuthorServiceImpl extends ServiceImpl<AuthorMapper, Author>
     public Map<String,Object> searchAuthorIncome(int authorId) {
         Map<String,Object> stringObjectMap = new HashMap<>();
         AuthorInfo authorInfo= authorMapper.searchAuthorIncomeTest(authorId);
+        System.out.println(authorInfo.getStocks().get(1).getPrices());
         stringObjectMap.put("income",authorInfo);
         return stringObjectMap;
     }
