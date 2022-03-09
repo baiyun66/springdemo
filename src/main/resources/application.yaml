@@ -35,6 +35,11 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    interceptors:
+
+
+
+
 
 ##  config-location: classpath:mybatis/mybaits-config.xml  #全局配置文件位置
 #  mapper-locations: classpath:mybatis/mapper/*.xml  #sql映射文件位置
@@ -43,4 +48,5 @@ mybatis-plus:
 #    map-underscore-to-camel-case: true
 
 debug: true
+
 

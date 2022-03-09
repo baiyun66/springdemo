@@ -47,6 +47,7 @@ public class StockPrice implements Serializable {
     /**
      * 
      */
+    @TableField("`close`")
     private BigDecimal close;
 
     /**
@@ -137,16 +138,19 @@ public class StockPrice implements Serializable {
     /**
      * 
      */
+    @TableField("avg_1210")
     private BigDecimal avg1210;
 
     /**
      * 
      */
+    @TableField("avg_2420")
     private BigDecimal avg2420;
 
     /**
      * 
      */
+    @TableField("avg_4840")
     private BigDecimal avg4840;
 
     /**
